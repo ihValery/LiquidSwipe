@@ -11,6 +11,7 @@
 		803C72CA27333B8500BFA8EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803C72C927333B8500BFA8EF /* ContentView.swift */; };
 		803C72CC27333B8800BFA8EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 803C72CB27333B8800BFA8EF /* Assets.xcassets */; };
 		803C72CF27333B8800BFA8EF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 803C72CE27333B8800BFA8EF /* Preview Assets.xcassets */; };
+		803C72D62733715400BFA8EF /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803C72D52733715400BFA8EF /* View.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		803C72C927333B8500BFA8EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		803C72CB27333B8800BFA8EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		803C72CE27333B8800BFA8EF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		803C72D52733715400BFA8EF /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 				803C72C727333B8500BFA8EF /* LiquidSwipeApp.swift */,
 				803C72C927333B8500BFA8EF /* ContentView.swift */,
 				803C72CB27333B8800BFA8EF /* Assets.xcassets */,
+				803C72D72733722400BFA8EF /* Extension */,
 				803C72CD27333B8800BFA8EF /* Preview Content */,
 			);
 			path = LiquidSwipe;
@@ -65,6 +68,14 @@
 				803C72CE27333B8800BFA8EF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		803C72D72733722400BFA8EF /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				803C72D52733715400BFA8EF /* View.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +150,7 @@
 			files = (
 				803C72CA27333B8500BFA8EF /* ContentView.swift in Sources */,
 				803C72C827333B8500BFA8EF /* LiquidSwipeApp.swift in Sources */,
+				803C72D62733715400BFA8EF /* View.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
