@@ -25,7 +25,6 @@ struct OnePage: View {
                 .padding(30)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
         }
-        .ignoresSafeArea()
     }
 }
 

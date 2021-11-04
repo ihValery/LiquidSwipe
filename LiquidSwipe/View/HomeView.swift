@@ -11,7 +11,14 @@ struct HomeView: View {
     @StateObject private var oo = TimeOfDayOO()
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            //Почему мы используем indices...
+            //Так как offset обновляется в реальном времени
+            ForEach(oo.data.indices.reversed(), id: \.self) { index in
+                OnePage(timeOfDay: oo.data[index])
+            }
+        }
+        .ignoresSafeArea()
     }
 }
 
