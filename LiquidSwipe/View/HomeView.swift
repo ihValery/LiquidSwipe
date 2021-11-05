@@ -11,6 +11,8 @@ struct HomeView: View {
     @StateObject private var oo = TimeOfDayOO()
     @State private var offset: CGSize = .zero
     @State private var location: CGPoint = .zero
+    @GestureState private var isDragging = false
+    @State private var isAnimation = false
     
     var body: some View {
         ZStack {
@@ -27,14 +29,22 @@ struct HomeView: View {
                         Image(systemName: "chevron.compact.right")
                             .font(.largeTitle)
                             .foregroundColor(.black)
-                            .opacity(0.3)
-                            .offset(x: 5)
+                            .opacity(isDragging ? 0 : 0.6)
+                            .animation(.linear, value: isDragging)
+
+                            .offset(x: isAnimation ? 10 : -10)
+                            .opacity(isAnimation ? 0 : 1)
+                            .animation(.easeInOut(duration: 2).delay(1).repeatForever(autoreverses: false), value: isAnimation)
+                        
                             .frame(maxWidth: 10, maxHeight: .infinity)
                             //Определяет форму содержимого для проверки попадания.
                             //Область нажатия работает вся, а свайп только на offset
                             .contentShape(Rectangle())
                             .gesture(
                                 DragGesture()
+                                    .updating($isDragging) { _, state, _ in
+                                        state = true
+                                    }
                                     .onChanged { value in
                                         offset = value.translation
                                         location = value.location
@@ -54,14 +64,22 @@ struct HomeView: View {
                         Image(systemName: "chevron.compact.left")
                             .font(.largeTitle)
                             .foregroundColor(.black)
-                            .opacity(0.3)
-                            .offset(x: -5)
+                            .opacity(isDragging ? 0 : 0.6)
+                            .animation(.linear, value: isDragging)
+
+                            .offset(x: isAnimation ? -10 : 10)
+                            .opacity(isAnimation ? 0 : 1)
+                            .animation(.easeInOut(duration: 2).delay(1).repeatForever(autoreverses: false), value: isAnimation)
+                        
                             .frame(maxWidth: 10, maxHeight: .infinity)
                             //Определяет форму содержимого для проверки попадания.
                             //Область нажатия работает вся, а свайп только на offset
                             .contentShape(Rectangle())
                             .gesture(
                                 DragGesture()
+                                    .updating($isDragging) { _, state, _ in
+                                        state = true
+                                    }
                                     .onChanged { value in
                                         offset = value.translation
                                         location = value.location
@@ -76,6 +94,10 @@ struct HomeView: View {
                     )
 //                    .padding(.trailing)
                     .ignoresSafeArea()
+            }
+            
+            .onAppear {
+                isAnimation.toggle()
             }
         }
     }
