@@ -15,6 +15,7 @@
 		803C72DE273375A500BFA8EF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803C72DD273375A500BFA8EF /* HomeView.swift */; };
 		803C72E0273387A400BFA8EF /* TimeOfDayDO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803C72DF273387A400BFA8EF /* TimeOfDayDO.swift */; };
 		803C72E22733884200BFA8EF /* TimeOfDayOO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803C72E12733884200BFA8EF /* TimeOfDayOO.swift */; };
+		8085DBE42734BA3D009194F3 /* LiquidShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8085DBE32734BA3D009194F3 /* LiquidShape.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		803C72DD273375A500BFA8EF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		803C72DF273387A400BFA8EF /* TimeOfDayDO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeOfDayDO.swift; sourceTree = "<group>"; };
 		803C72E12733884200BFA8EF /* TimeOfDayOO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeOfDayOO.swift; sourceTree = "<group>"; };
+		8085DBE32734BA3D009194F3 /* LiquidShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquidShape.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				803C72D8273374EC00BFA8EF /* Model */,
 				803C72D9273374FA00BFA8EF /* ViewModel */,
 				803C72DA2733750400BFA8EF /* View */,
+				803C72E327338FB600BFA8EF /* Shape */,
 				803C72D72733722400BFA8EF /* Extension */,
 				803C72CB27333B8800BFA8EF /* Assets.xcassets */,
 				803C72CD27333B8800BFA8EF /* Preview Content */,
@@ -109,6 +112,14 @@
 				803C72DB2733753400BFA8EF /* OnePage.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		803C72E327338FB600BFA8EF /* Shape */ = {
+			isa = PBXGroup;
+			children = (
+				8085DBE32734BA3D009194F3 /* LiquidShape.swift */,
+			);
+			path = Shape;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,6 +196,7 @@
 				803C72C827333B8500BFA8EF /* LiquidSwipeApp.swift in Sources */,
 				803C72DE273375A500BFA8EF /* HomeView.swift in Sources */,
 				803C72E0273387A400BFA8EF /* TimeOfDayDO.swift in Sources */,
+				8085DBE42734BA3D009194F3 /* LiquidShape.swift in Sources */,
 				803C72D62733715400BFA8EF /* View.swift in Sources */,
 				803C72DC2733753400BFA8EF /* OnePage.swift in Sources */,
 			);
@@ -315,7 +327,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 420.104;
 				DEVELOPMENT_ASSET_PATHS = "\"LiquidSwipe/Preview Content\"";
 				DEVELOPMENT_TEAM = 879U287R5Q;
 				ENABLE_PREVIEWS = YES;
@@ -323,8 +335,10 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -344,7 +358,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 420.104;
 				DEVELOPMENT_ASSET_PATHS = "\"LiquidSwipe/Preview Content\"";
 				DEVELOPMENT_TEAM = 879U287R5Q;
 				ENABLE_PREVIEWS = YES;
@@ -352,8 +366,10 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

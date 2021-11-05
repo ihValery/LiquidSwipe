@@ -14,10 +14,11 @@ struct OnePage: View {
         ZStack {
             timeOfDay.image
                 .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: getRect().width, height: getRect().height)
+                .scaledToFill()
+                .frame(maxWidth: getRect().width)
+                .frame(maxHeight: .infinity)
                 .clipped()
-            
+
             Text(timeOfDay.title)
                 .font(.largeTitle).bold()
                 .foregroundColor(.white)
@@ -25,13 +26,12 @@ struct OnePage: View {
                 .padding(30)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
         }
-        .ignoresSafeArea()
     }
 }
 
 struct OnePage_Previews: PreviewProvider {
     static var previews: some View {
-        let timeOfDay = TimeOfDayOO().data.first!
+        let timeOfDay = TimeOfDayOO().data[0]
         OnePage(timeOfDay: timeOfDay)
     }
 }
