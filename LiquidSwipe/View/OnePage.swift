@@ -15,9 +15,11 @@ struct OnePage: View {
             timeOfDay.image
                 .resizable()
                 .scaledToFill()
+                .offset(y: getRect().height > 1000 ? -200 : 0)
                 .frame(maxWidth: getRect().width)
                 .frame(maxHeight: .infinity)
                 .clipped()
+            
 
             Text(timeOfDay.title)
                 .font(.largeTitle).bold()
