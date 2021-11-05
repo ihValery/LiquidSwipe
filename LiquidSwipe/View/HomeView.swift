@@ -21,29 +21,27 @@ struct HomeView: View {
                     .clipShape(LiquidShape(offset: offset, location: location))
                     .ignoresSafeArea()
                     .overlay(
-                        Button(action: { print("Tap!") },
-                               label: {
-                                   Image(systemName: "chevron.compact.left")
-                                       .font(.largeTitle)
-                                       .foregroundColor(.gray)
-                                       .offset(x: -5, y: getRect().height > 750 ? 327 : 155)
-                                       .frame(maxWidth: 10, maxHeight: .infinity)
-                                        //Определяет форму содержимого для проверки попадания.
-                                        //Область нажатия работает вся, а свайп только на offset
-                                       .contentShape(Rectangle())
-                                       .gesture(
-                                        DragGesture()
-                                            .onChanged { value in
-                                                    offset = value.translation
-                                                    location = value.location
-                                            }
-                                            .onEnded { value in
-                                                withAnimation(.interactiveSpring(response: 0.7, dampingFraction: 0.6, blendDuration: 0.6)) {
-                                                    offset = .zero
-                                                }
-                                            }
-                                       )
-                               })
+                        Image(systemName: "chevron.compact.left")
+                            .font(.largeTitle)
+                            .foregroundColor(.black)
+                            .opacity(0.3)
+                            .offset(x: -5)
+                            .frame(maxWidth: 10, maxHeight: .infinity)
+                            //Определяет форму содержимого для проверки попадания.
+                            //Область нажатия работает вся, а свайп только на offset
+                            .contentShape(Rectangle())
+                            .gesture(
+                                DragGesture()
+                                    .onChanged { value in
+                                        offset = value.translation
+                                        location = value.location
+                                    }
+                                    .onEnded { value in
+                                        withAnimation(.interactiveSpring(response: 0.7, dampingFraction: 0.6, blendDuration: 0.6)) {
+                                            offset = .zero
+                                        }
+                                    }
+                            )
                         , alignment: .bottomTrailing
                     )
 //                    .padding(.trailing)
