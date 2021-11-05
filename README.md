@@ -8,3 +8,10 @@
 - Warning: All interface orientations must be supported unless the app requires full screen.
 - Ставим галочку: Requires full screen
 
+- 1 Модель - var offset: CGSize = .zero
+- 2 ForEach(..indices.reversed()) - indices...так как offset обновляется в реальном времени
+- 3 Shape фигуру нужной формы, тут кривые Безье
+- 4 faceIndex u currentIndex (для иллюзии бесконечности)
+- 5 В .clipShape(передаем offset: oo.data[index])
+- 6 В .gesture(.onChanged { value in oo.data[currentIndex].offset = value.translation )}
+- 7 Логика отработки жестов(что хотим)

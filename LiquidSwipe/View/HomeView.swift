@@ -11,6 +11,11 @@ struct HomeView: View {
     @StateObject private var oo = TimeOfDayOO()
     @State private var offset: CGSize = .zero
     @State private var location: CGPoint = .zero
+    @GestureState private var isDragging = false
+    @State private var isAnimation = false
+    
+    @State private var fakeIndex: Int = 0
+    @State private var currentIndex: Int = 0
     
     var body: some View {
         ZStack {
@@ -22,53 +27,73 @@ struct HomeView: View {
 //                    .ignoresSafeArea()
                 
                     //Left
-                    .clipShape(LiquidShape(offset: offset, location: location, side: .left))
-                    .overlay(
-                        Image(systemName: "chevron.compact.right")
-                            .font(.largeTitle)
-                            .foregroundColor(.black)
-                            .opacity(0.3)
-                            .offset(x: 5)
-                            .frame(maxWidth: 10, maxHeight: .infinity)
-                            //Определяет форму содержимого для проверки попадания.
-                            //Область нажатия работает вся, а свайп только на offset
-                            .contentShape(Rectangle())
-                            .gesture(
-                                DragGesture()
-                                    .onChanged { value in
-                                        offset = value.translation
-                                        location = value.location
-                                    }
-                                    .onEnded { value in
-                                        withAnimation(.easeIn) {
-                                            offset = .zero
-                                        }
-                                    }
-                            )
-                        , alignment: .leading
-                    )
+//                    .clipShape(LiquidShape(offset: offset, location: location, side: .left))
+//                    .overlay(
+//                        Image(systemName: "chevron.compact.right")
+//                            .font(.largeTitle)
+//                            .foregroundColor(.black)
+//                            .opacity(isDragging ? 0 : 0.6)
+//                            .animation(.linear, value: isDragging)
+//
+//                            .offset(x: isAnimation ? 10 : -10)
+//                            .opacity(isAnimation ? 0 : 1)
+//                            .animation(.easeInOut(duration: 2).delay(1).repeatForever(autoreverses: false), value: isAnimation)
+//
+//                            .frame(maxWidth: 10, maxHeight: .infinity)
+//                            //Определяет форму содержимого для проверки попадания.
+//                            //Область нажатия работает вся, а свайп только на offset
+//                            .contentShape(Rectangle())
+//                            .gesture(
+//                                DragGesture()
+//                                    .updating($isDragging) { _, state, _ in
+//                                        state = true
+//                                    }
+//                                    .onChanged { value in
+//                                        offset = value.translation
+//                                        location = value.location
+//                                    }
+//                                    .onEnded { value in
+//                                        withAnimation(.easeIn) {
+//                                            offset = .zero
+//                                        }
+//                                    }
+//                            )
+//                        , alignment: .leading
+//                    )
                 
                     //Rigth
-                    .clipShape(LiquidShape(offset: offset, location: location, side: .right))
+                    .clipShape(LiquidShape(offset: oo.data[index].offset, location: location, side: .right))
                     .overlay(
                         Image(systemName: "chevron.compact.left")
                             .font(.largeTitle)
                             .foregroundColor(.black)
-                            .opacity(0.3)
-                            .offset(x: -5)
+                            .opacity(isDragging ? 0 : 0.6)
+                            .animation(.linear, value: isDragging)
+
+                            .offset(x: isAnimation ? -10 : 10)
+                            .opacity(isAnimation ? 0 : 1)
+                            .animation(.easeInOut(duration: 2).delay(1).repeatForever(autoreverses: false), value: isAnimation)
+                        
                             .frame(maxWidth: 10, maxHeight: .infinity)
                             //Определяет форму содержимого для проверки попадания.
                             //Область нажатия работает вся, а свайп только на offset
                             .contentShape(Rectangle())
                             .gesture(
                                 DragGesture()
+                                    .updating($isDragging) { _, state, _ in
+                                        state = true
+                                    }
                                     .onChanged { value in
-                                        offset = value.translation
-                                        location = value.location
+                                            oo.data[currentIndex].offset = value.translation
+                                            location = value.location
                                     }
                                     .onEnded { value in
                                         withAnimation(.easeIn) {
-                                            offset = .zero
+                                            if -oo.data[currentIndex].offset.width > getRect().width / 5 * 4 {
+                                                oo.data[currentIndex].offset.width = -getRect().height * 1.5
+                                            } else {
+                                                oo.data[currentIndex].offset = .zero
+                                            }
                                         }
                                     }
                             )
@@ -76,6 +101,10 @@ struct HomeView: View {
                     )
 //                    .padding(.trailing)
                     .ignoresSafeArea()
+            }
+            
+            .onAppear {
+                isAnimation.toggle()
             }
         }
     }

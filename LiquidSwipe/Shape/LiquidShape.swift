@@ -29,11 +29,13 @@ struct LiquidShape: Shape {
     
     func path(in rect: CGRect) -> Path {
         var p = Path()
+        //Прямоугольник во весь акран и внутри "кляксу"
         p.move(to: CGPoint(x: 0, y: 0))
         p.addLine(to: CGPoint(x: rect.width, y: 0))
         p.addLine(to: CGPoint(x: rect.width, y: rect.height))
         p.addLine(to: CGPoint(x: 0, y: rect.height))
         
+        //Правая или левая сторона
         let width: CGFloat = side == .right ? rect.width : 0
         let minHeight: CGFloat = side == .right ? -80 : 80
         
@@ -51,10 +53,6 @@ struct LiquidShape: Shape {
         p.addCurve(to: B, control1: ABcontrol1, control2: ABcontrol2)
         p.addCurve(to: C, control1: BCcontrol1, control2: BCcontrol2)
         
-        print(offset)
-        print("ABcontrol1 \(ABcontrol1)")
-        print("ABcontrol2 \(ABcontrol2)")
-
         return p
     }
 }
