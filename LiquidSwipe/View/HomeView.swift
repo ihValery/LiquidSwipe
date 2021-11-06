@@ -36,18 +36,25 @@ struct HomeView: View {
                                     }
                                     .onChanged { value in
                                         offset = value.translation
+//                                        oo.data[fakeIndex].offset = value.translation
                                         location = value.location
                                     }
                                     .onEnded { value in
-                                        withAnimation(.easeIn) {
+                                        withAnimation(.easeOut) {
+//                                            if oo.data[fakeIndex].offset.width > getRect().width / 5 * 4 {
+//                                                oo.data[fakeIndex].offset.width = getRect().height * 2
+//                                                fakeIndex += 1
+//                                            } else {
                                             offset = .zero
+//                                                oo.data[fakeIndex].offset = .zero
+//                                            }
                                         }
                                     }
                             )
                         , alignment: .leading
                     )
                 
-                //MARK: - Rigth
+//                //MARK: - Rigth
                     .clipShape(LiquidShape(offset: oo.data[index].offset, location: location, side: .right))
                     .overlay(
                         ChevronView(isDragging: isDragging, isAnimation: isAnimation, side: .right)
@@ -65,18 +72,18 @@ struct HomeView: View {
                                             if -oo.data[fakeIndex].offset.width > getRect().width / 5 * 4 {
                                                 oo.data[fakeIndex].offset.width = -getRect().height * 2
                                                 fakeIndex += 1
-                                                
+
                                                 //Обновление оригенального индекса
                                                 if currentIndex == oo.data.count - 3 {
                                                     currentIndex = 0
                                                 } else {
                                                     currentIndex += 1
                                                 }
-                                                
+
                                                 //Когда fakeindex достигает предпоследнего элемента
                                                 //Снова переключаемся на первый елемент, чтобы создать ощущение бесконечной карусели
                                                 //Не большая задержка для завершения анимации смахивания
-                                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                                                     if fakeIndex == oo.data.count - 2 {
                                                         for i in 0..<oo.data.count - 2 {
                                                             oo.data[i].offset = .zero
@@ -85,8 +92,8 @@ struct HomeView: View {
                                                         fakeIndex = 0
                                                     }
                                                 }
-                                                
-                                                
+
+
                                             } else {
                                                 oo.data[fakeIndex].offset = .zero
                                             }
@@ -102,18 +109,22 @@ struct HomeView: View {
             
             .onAppear {
                 isAnimation.toggle()
-                
+
                 //Меняем последний элемент с первым
                 //и первый с последним, чтобы создать ощущение бесконечной карусели
                 guard let first = oo.data.first else { return }
                 guard var last = oo.data.last else { return }
-                
+
                 last.offset.width = -getRect().height * 2
 
                 oo.data.append(first)
                 oo.data.insert(last, at: 0)
 
                 fakeIndex = 1
+
+                for i in 0..<oo.data.count {
+                    print(oo.data[i].title)
+                }
             }
         }
     }
