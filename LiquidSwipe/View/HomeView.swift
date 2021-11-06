@@ -11,6 +11,7 @@ struct HomeView: View {
     @StateObject private var oo = TimeOfDayOO()
     @State private var offset: CGSize = .zero
     @State private var location: CGPoint = .zero
+    
     @GestureState private var isDragging = false
     @State private var isAnimation = false
     
@@ -23,88 +24,96 @@ struct HomeView: View {
             //Так как offset обновляется в реальном времени
             ForEach(oo.data.indices.reversed(), id: \.self) { index in
                 OnePage(timeOfDay: oo.data[index])
-//                    .clipShape(LiquidShape(offset: offset, location: location, side: .left))
-//                    .ignoresSafeArea()
                 
-                    //Left
-//                    .clipShape(LiquidShape(offset: offset, location: location, side: .left))
-//                    .overlay(
-//                        Image(systemName: "chevron.compact.right")
-//                            .font(.largeTitle)
-//                            .foregroundColor(.black)
-//                            .opacity(isDragging ? 0 : 0.6)
-//                            .animation(.linear, value: isDragging)
-//
-//                            .offset(x: isAnimation ? 10 : -10)
-//                            .opacity(isAnimation ? 0 : 1)
-//                            .animation(.easeInOut(duration: 2).delay(1).repeatForever(autoreverses: false), value: isAnimation)
-//
-//                            .frame(maxWidth: 10, maxHeight: .infinity)
-//                            //Определяет форму содержимого для проверки попадания.
-//                            //Область нажатия работает вся, а свайп только на offset
-//                            .contentShape(Rectangle())
-//                            .gesture(
-//                                DragGesture()
-//                                    .updating($isDragging) { _, state, _ in
-//                                        state = true
-//                                    }
-//                                    .onChanged { value in
-//                                        offset = value.translation
-//                                        location = value.location
-//                                    }
-//                                    .onEnded { value in
-//                                        withAnimation(.easeIn) {
-//                                            offset = .zero
-//                                        }
-//                                    }
-//                            )
-//                        , alignment: .leading
-//                    )
-                
-                    //Rigth
-                    .clipShape(LiquidShape(offset: oo.data[index].offset, location: location, side: .right))
+                //MARK: - Left
+                    .clipShape(LiquidShape(offset: offset, location: location, side: .left))
                     .overlay(
-                        Image(systemName: "chevron.compact.left")
-                            .font(.largeTitle)
-                            .foregroundColor(.black)
-                            .opacity(isDragging ? 0 : 0.6)
-                            .animation(.linear, value: isDragging)
-
-                            .offset(x: isAnimation ? -10 : 10)
-                            .opacity(isAnimation ? 0 : 1)
-                            .animation(.easeInOut(duration: 2).delay(1).repeatForever(autoreverses: false), value: isAnimation)
-                        
-                            .frame(maxWidth: 10, maxHeight: .infinity)
-                            //Определяет форму содержимого для проверки попадания.
-                            //Область нажатия работает вся, а свайп только на offset
-                            .contentShape(Rectangle())
+                        ChevronView(isDragging: isDragging, isAnimation: isAnimation, side: .left)
                             .gesture(
                                 DragGesture()
                                     .updating($isDragging) { _, state, _ in
                                         state = true
                                     }
                                     .onChanged { value in
-                                            oo.data[currentIndex].offset = value.translation
-                                            location = value.location
+                                        offset = value.translation
+                                        location = value.location
                                     }
                                     .onEnded { value in
                                         withAnimation(.easeIn) {
-                                            if -oo.data[currentIndex].offset.width > getRect().width / 5 * 4 {
-                                                oo.data[currentIndex].offset.width = -getRect().height * 1.5
+                                            offset = .zero
+                                        }
+                                    }
+                            )
+                        , alignment: .leading
+                    )
+                
+                //MARK: - Rigth
+                    .clipShape(LiquidShape(offset: oo.data[index].offset, location: location, side: .right))
+                    .overlay(
+                        ChevronView(isDragging: isDragging, isAnimation: isAnimation, side: .right)
+                            .gesture(
+                                DragGesture()
+                                    .updating($isDragging) { _, state, _ in
+                                        state = true
+                                    }
+                                    .onChanged { value in
+                                        oo.data[fakeIndex].offset = value.translation
+                                        location = value.location
+                                    }
+                                    .onEnded { value in
+                                        withAnimation(.easeOut) {
+                                            if -oo.data[fakeIndex].offset.width > getRect().width / 5 * 4 {
+                                                oo.data[fakeIndex].offset.width = -getRect().height * 2
+                                                fakeIndex += 1
+                                                
+                                                //Обновление оригенального индекса
+                                                if currentIndex == oo.data.count - 3 {
+                                                    currentIndex = 0
+                                                } else {
+                                                    currentIndex += 1
+                                                }
+                                                
+                                                //Когда fakeindex достигает предпоследнего элемента
+                                                //Снова переключаемся на первый елемент, чтобы создать ощущение бесконечной карусели
+                                                //Не большая задержка для завершения анимации смахивания
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                                                    if fakeIndex == oo.data.count - 2 {
+                                                        for i in 0..<oo.data.count - 2 {
+                                                            oo.data[i].offset = .zero
+                                                        }
+
+                                                        fakeIndex = 0
+                                                    }
+                                                }
+                                                
+                                                
                                             } else {
-                                                oo.data[currentIndex].offset = .zero
+                                                oo.data[fakeIndex].offset = .zero
                                             }
                                         }
                                     }
                             )
                         , alignment: .trailing
                     )
-//                    .padding(.trailing)
+                //MARK: -
+                
                     .ignoresSafeArea()
             }
             
             .onAppear {
                 isAnimation.toggle()
+                
+                //Меняем последний элемент с первым
+                //и первый с последним, чтобы создать ощущение бесконечной карусели
+                guard let first = oo.data.first else { return }
+                guard var last = oo.data.last else { return }
+                
+                last.offset.width = -getRect().height * 2
+
+                oo.data.append(first)
+                oo.data.insert(last, at: 0)
+
+                fakeIndex = 1
             }
         }
     }
