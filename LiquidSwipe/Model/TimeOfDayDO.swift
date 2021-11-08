@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct TimeOfDayDO: Identifiable {
-    var id = UUID().uuidString
-    var title: String
-    var image: Image
-    var offset: CGSize = .zero
+   var id = UUID().uuidString
+   var title: String
+   var image: Image
+   var offset: CGSize = .zero
 }
