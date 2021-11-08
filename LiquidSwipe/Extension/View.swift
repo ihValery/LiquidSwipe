@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension View {
-    func getRect() -> CGRect {
-        UIScreen.main.bounds
-    }
+   func getRect() -> CGRect {
+      UIScreen.main.bounds
+   }
 }

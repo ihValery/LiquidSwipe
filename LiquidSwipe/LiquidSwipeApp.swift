@@ -9,9 +9,9 @@ import SwiftUI
 
 @main
 struct LiquidSwipeApp: App {
-    var body: some Scene {
-        WindowGroup {
-            HomeView()
-        }
-    }
+   var body: some Scene {
+      WindowGroup {
+         ExyteView()
+      }
+   }
 }

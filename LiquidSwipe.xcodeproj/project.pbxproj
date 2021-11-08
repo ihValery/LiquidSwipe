@@ -18,6 +18,7 @@
 		8085DBE42734BA3D009194F3 /* LiquidShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8085DBE32734BA3D009194F3 /* LiquidShape.swift */; };
 		8085DBE62735E64A009194F3 /* Side.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8085DBE52735E64A009194F3 /* Side.swift */; };
 		8085DBE82735FD3F009194F3 /* ChevronView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8085DBE72735FD3F009194F3 /* ChevronView.swift */; };
+		8088645B2739D85A00598CC2 /* ExyteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088645A2739D85A00598CC2 /* ExyteView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		8085DBE32734BA3D009194F3 /* LiquidShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquidShape.swift; sourceTree = "<group>"; };
 		8085DBE52735E64A009194F3 /* Side.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Side.swift; sourceTree = "<group>"; };
 		8085DBE72735FD3F009194F3 /* ChevronView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChevronView.swift; sourceTree = "<group>"; };
+		8088645A2739D85A00598CC2 /* ExyteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExyteView.swift; path = LiquidSwipe/ExyteView.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 		803C72DA2733750400BFA8EF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8088645A2739D85A00598CC2 /* ExyteView.swift */,
 				803C72DD273375A500BFA8EF /* HomeView.swift */,
 				803C72DB2733753400BFA8EF /* OnePage.swift */,
 				8085DBE72735FD3F009194F3 /* ChevronView.swift */,
@@ -202,6 +205,7 @@
 				8085DBE82735FD3F009194F3 /* ChevronView.swift in Sources */,
 				803C72C827333B8500BFA8EF /* LiquidSwipeApp.swift in Sources */,
 				8085DBE62735E64A009194F3 /* Side.swift in Sources */,
+				8088645B2739D85A00598CC2 /* ExyteView.swift in Sources */,
 				803C72DE273375A500BFA8EF /* HomeView.swift in Sources */,
 				803C72E0273387A400BFA8EF /* TimeOfDayDO.swift in Sources */,
 				8085DBE42734BA3D009194F3 /* LiquidShape.swift in Sources */,
