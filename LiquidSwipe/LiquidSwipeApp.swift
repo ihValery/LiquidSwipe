@@ -11,7 +11,7 @@ import SwiftUI
 struct LiquidSwipeApp: App {
    var body: some Scene {
       WindowGroup {
-         ExyteView()
+         ExyteLiquidSwipeView()
       }
    }
 }
