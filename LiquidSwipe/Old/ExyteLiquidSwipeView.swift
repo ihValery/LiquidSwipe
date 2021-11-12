@@ -55,6 +55,11 @@ struct ExyteLiquidSwipeView: View {
       withAnimation() {
          data.wrappedValue = data.wrappedValue.finalWave()
       }
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+         pageIndex = index(of: data.wrappedValue)
+         leftData = leftData.initialWave()
+         rightData = rightData.initialWave()
+      }
       
    }
    
@@ -64,8 +69,8 @@ struct ExyteLiquidSwipeView: View {
             topSlider = data.wrappedValue.side
             data.wrappedValue = data.wrappedValue.drag(value: $0)
          }
-         .onEnded { value in
-            if data.wrappedValue.isCancelled(value: value) {
+         .onEnded {
+            if data.wrappedValue.isCancelled(value: $0) {
                withAnimation(.spring(dampingFraction: 0.5)) {
                   data.wrappedValue = data.wrappedValue.initialWave()
                }
